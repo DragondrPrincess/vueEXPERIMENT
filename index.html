@@ -189,8 +189,19 @@ new Vue({
         alert('用户名和密码不能为空！')
         return
       }
-      alert('登录成功！')
-      this.showLogin = false
+      const params = new URLSearchParams()
+      params.append('username', this.loginForm.username)
+      params.append('password', this.loginForm.password)
+      axios.post('http://localhost:8080/untitled1/user/login', params)
+        .then(res => {
+          if (res.data === 'success') {
+            alert('登录成功！')
+            this.showLogin = false
+          } else {
+            alert(res.data)
+        }
+      })
+    .catch(() => alert('请求失败，请检查后端是否启动'))
     },
     doRegister() {
       if (!this.registerForm.username || !this.registerForm.password || !this.registerForm.repwd) {
