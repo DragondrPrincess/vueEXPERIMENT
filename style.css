@@ -41,3 +41,4 @@ body {
   width: 24px !important;
   filter: invert(100%) !important;
 }
+a { cursor: pointer; }
